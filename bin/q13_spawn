@@ -1,0 +1,31 @@
+#!/bin/bash
+
+QUARTUS_IMAGE=${QUARTUS_IMAGE:-"quartus:13.0"}
+CONTAINER_NAME=${CONTAINER_NAME:-"quartus13"}
+QUARTUS_PATH=/opt/quartus13.0sp1/quartus/bin/
+
+echo QUARTUS_IMAGE: $QUARTUS_IMAGE
+echo WORKPLACE: $PWD
+
+
+
+docker run \
+    --rm --init \
+    --name $CONTAINER_NAME \
+    --network=host \
+    --ipc=host \
+    -v /etc/passwd:/etc/passwd:ro \
+    -v /etc/group:/etc/group:ro  \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    --user $(id -u):$(id -g) \
+    -v "$HOME:$HOME" \
+    -e DISPLAY=$DISPLAY \
+    -e LD_LIBRARY_PATH=$LD_LIBRARY_PATH \
+    -e QUARTUS_64BIT=1 \
+    -e PATH=/bin:/sbin:/usr/bin:$QUARTUS_PATH \
+    -w $HOME \
+    -v /dev/bus/usb:/dev/bus/usb \
+    --device-cgroup-rule='c *:* rmw' \
+    -it \
+    $QUARTUS_IMAGE $@
+    
