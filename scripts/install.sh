@@ -26,6 +26,9 @@ rm *deb
 
 apt-mark hold libfreetype6 libfreetype6:i386
 
+# Quartus 13.1 setup.sh has a hardcoded path to /bin/env
+ln -s /usr/bin/env /bin/env
+
 # Perform non-interactive Quartus installation
 cd /install
 ./setup.sh --mode unattended --installdir $INSTALL_DIR
