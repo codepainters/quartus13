@@ -3,7 +3,7 @@ set -e
 
 export DEBIAN_FRONTEND=noninteractive
 export TERM=xterm-256color
-export INSTALL_DIR=/opt/quartus13.0sp1
+export INSTALL_DIR=/opt/quartus13
 
 # Install all the necessary dependencies
 dpkg --add-architecture i386
@@ -29,6 +29,11 @@ apt-mark hold libfreetype6 libfreetype6:i386
 # Perform non-interactive Quartus installation
 cd /install
 ./setup.sh --mode unattended --installdir $INSTALL_DIR
+
+# This is necessary to run ModelSim binaries from ./bin directory, as it
+# miss-detects the system as RH60 (it checks kernel version).
+ln -s $INSTALL_DIR/modelsim_ase/linux $INSTALL_DIR/modelsim_ase/linux_rh60
+ln -s $INSTALL_DIR/modelsim_ae/linux $INSTALL_DIR/modelsim_ae/linux_rh60
 
 # cleanup
 rm -Rf /var/lib/apt/lists/*

@@ -1,4 +1,4 @@
-# Altera Quartus 13.0SP1 dockerized 
+# Altera Quartus 13 & 13.1 dockerized 
 
 Files in this repository allow for running Quartus 13.0 Service Pack 1 in a Docker container. 
 

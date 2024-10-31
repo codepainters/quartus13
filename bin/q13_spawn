@@ -1,8 +1,9 @@
 #!/bin/bash
 
-QUARTUS_IMAGE=${QUARTUS_IMAGE:-"quartus:13.0"}
+QUARTUS_IMAGE=${QUARTUS_IMAGE:-"quartus:13"}
 CONTAINER_NAME=${CONTAINER_NAME:-"quartus13"}
-QUARTUS_PATH=/opt/quartus13.0sp1/quartus/bin/
+QUARTUS_BASE=/opt/quartus13/
+QUARTUS_PATH=$QUARTUS_BASE/quartus/bin/:$QUARTUS_BASE/modelsim_ase/bin/
 
 echo QUARTUS_IMAGE: $QUARTUS_IMAGE
 echo WORKPLACE: $PWD
