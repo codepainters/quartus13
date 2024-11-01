@@ -13,6 +13,7 @@ apt install -y --no-install-recommends \
     vim libc6:i386 libsm6 \
     libxrender1 libfontconfig1 libxext6 \
     libxft2:i386 libxext6:i386 libncurses5:i386 \
+    libxss1 libxft2 \
     zsh strace wget
 
 
